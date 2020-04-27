@@ -120,8 +120,8 @@ def Check04_TmaxTminRange( DataDF, ReplacedValuesDF ):
         #Replaing values are tracked index locations with NaN characters
         DataDF.loc[i,'Min Temp'] = np.nan
         DataDF.loc[i,'Max Temp'] = np.nan
-    ReplacedValuesDF.loc['4. Range','Min Temp'] = len(range_exceed_index)
-    ReplacedValuesDF.loc['4. Range','Max Temp'] = len(range_exceed_index)
+    ReplacedValuesDF.loc['4. Range Fail','Min Temp'] = len(range_exceed_index)
+    ReplacedValuesDF.loc['4. Range Fail','Max Temp'] = len(range_exceed_index)
     ReplacedValuesDF = ReplacedValuesDF.replace(np.nan,0)
     return( DataDF, ReplacedValuesDF )
     
