@@ -154,28 +154,28 @@ if __name__ == '__main__':
     print("\nFinal changed values counts.....\n", ReplacedValuesDF)
 
     
-#writing the processed data into a file (in the original format)
-DataDF.to_csv("DataQualityChecking_postchecking.txt", header=None, sep=' ')
+    #writing the processed data into a file (in the original format)
+    DataDF.to_csv("DataQualityChecking_postchecking.txt", header=None, sep=' ')
 
-#Writing the info about replaced values in a txt file
-ReplacedValuesDF.to_csv("Replaced_values_info.txt", sep="\t")   
+    #Writing the info about replaced values in a txt file
+    ReplacedValuesDF.to_csv("Replaced_values_info.txt", sep="\t")   
 
 
-#Loading unprocessed data to a dataframe
-df = ReadData(fileName)[0]
+    #Loading unprocessed data to a dataframe
+    df = ReadData(fileName)[0]
 
-# Plotting data for each variable before and after checks
-df = pd.concat([df,DataDF], axis=1)
-variables = DataDF.columns.tolist()
-variables_full_names = ['Daily precipitation - mm', 'maximum air temperature - degree C','minimum air temperature - degree C','wind speed - meters per second']
+    # Plotting data for each variable before and after checks
+    df = pd.concat([df,DataDF], axis=1)
+    variables = DataDF.columns.tolist()
+    variables_full_names = ['Daily precipitation - mm', 'maximum air temperature - degree C','minimum air temperature - degree C','wind speed - meters per second']
 
-for i in range(len(variables)):
-    df1 = df[variables[i]]
-    df1.columns = ['before checks','after checks']
-    fig1 = df1.plot(color=['r','b'],alpha=0.65,figsize = (7,5))
-    fig1.set_ylabel(variables_full_names[i]) # set y label
-    fig1.set_xlabel('Date') # set x label
-    fig1.set_title(variables_full_names[i]+' - before and after checks')
-    plt.savefig(variables_full_names[i]+'.svg')
-    plt.close() #remove this line to get inline plots
+    for i in range(len(variables)):
+        df1 = df[variables[i]]
+        df1.columns = ['before checks','after checks']
+        fig1 = df1.plot(color=['r','b'],alpha=0.65,figsize = (7,5))
+        fig1.set_ylabel(variables_full_names[i]) # set y label
+        fig1.set_xlabel('Date') # set x label
+        fig1.set_title(variables_full_names[i]+' - before and after checks')
+        plt.savefig(variables_full_names[i]+'.svg')
+        plt.close() #remove this line to get inline plots
 
